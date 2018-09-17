@@ -1,25 +1,75 @@
 import React from 'react'
 
-const AddRecipe = () => (
-  <div className="App">
-    <h2 className="App">Add Recipe</h2>
-    <form className="form">
-      <select name="category" onChange={this.handleChange}>
-        <option value="Breakfast">Breakfast</option>
-        <option value="Lunch">Lunch</option>
-        <option value="Dinner">Dinner</option>
-        <option value="Snack">Snack</option>
-      </select>
+const initialState = {
+  name: "",
+  imageUrl: "",
+  instructions: "",
+  category: "Breakfast",
+  description: "",
+  username: ""
+};
 
-    <input type="text" name="description" placeholder="Add description" onChange={this.handleChange} />
+class AddRecipe extends React.Component {
+  state = { ...initialState };
 
-    <textarea name="instructions" placeholder="Add instructions" onChange={this.handleChange} />
+  handleChange = event => {
+    const { name, value } = event.target;
+    this.setState({ [name]: value });
+  };
 
-    <button type="submit" className="button-primary">Submit</button>
 
-    </form>
+  render() {
+    const {
+      name,
+      imageUrl,
+      category,
+      description,
+      instructions,
+      username
+    } = this.state;
 
-  </div>
-);
+
+    return (
+      <div className="App">
+        <h2 className="App">Add Recipe</h2>
+        <form className="form">
+          <input
+            type="text"
+            name="name"
+            placeholder="Recipe Name"
+            onChange={this.handleChange}
+            value={name}
+            />
+          <select name="category" onChange={this.handleChange}
+          value={category}>
+            <option value="Breakfast">Breakfast</option>
+            <option value="Lunch">Lunch</option>
+            <option value="Dinner">Dinner</option>
+            <option value="Snack">Snack</option>
+          </select>
+    
+        <input 
+          type="text" 
+          name="description" 
+          placeholder="Add description" 
+          onChange={this.handleChange} 
+          value={description}
+        />
+    
+        <textarea 
+          name="instructions" 
+          placeholder="Add instructions" 
+          onChange={this.handleChange} 
+          value={instructions}
+        />
+    
+        <button type="submit" className="button-primary">Submit</button>
+    
+        </form>
+    
+      </div>
+    )
+  }
+};
 
 export default AddRecipe;
