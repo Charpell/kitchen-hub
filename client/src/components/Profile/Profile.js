@@ -1,14 +1,12 @@
-import React, { Component } from 'react'
+import React from "react";
+
+import UserInfo from "./UserInfo";
 
 
-class Profile extends Component {
-  render() {
-    return(
-      <div>
-        Profile
-      </div>
-    )
-  }
-}
+const Profile = ({ session }) => (
+  <div className="App">
+    <UserInfo session={session} />
+  </div>
+);
 
 export default Profile;
