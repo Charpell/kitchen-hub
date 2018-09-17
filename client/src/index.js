@@ -16,7 +16,7 @@ import Navbar from "./components/Navbar";
 import Search from "./components/Recipe/Search";
 import AddRecipe from "./components/Recipe/AddRecipe";
 import Profile from "./components/Profile/Profile";
-
+import RecipePage from "./components/Recipe/RecipePage";
 
 import ApolloClient from "apollo-boost";
 import { ApolloProvider } from "react-apollo";
@@ -57,6 +57,7 @@ const Root = ({ refetch, session }) => (
           path="/recipe/add"
           render={() => <AddRecipe session={session} />}
         />
+      <Route path="/recipes/:_id" component={RecipePage} />
       <Route path="/profile" render={() => <Profile session={session} />} />
       <Redirect to="/" />
     </Switch>      
