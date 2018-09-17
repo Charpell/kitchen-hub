@@ -33,7 +33,7 @@ mongoose
 const app = express();
 
 // Create GraphiQL application
-// app.use("/graphiql", graphiqlExpress({ endpointURL: "/graphql" }));
+app.use("/graphiql", graphiqlExpress({ endpointURL: "/graphql" }));
 
 // Connect schemas with GraphQL
 app.use(
