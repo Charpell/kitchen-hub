@@ -1,10 +1,13 @@
 {
   "name": "Recipes",
   "version": "1.0.0",
-  "description": "",
+  "description": "A starter for React-Apollo-GraphQL projects",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "server": "nodemon server.js",
+    "client": "cd client && npm start",
+    "dev":
+      "concurrently --names \"server,client\" \"npm run server --silent\" \"npm run client --silent\""
   },
   "keywords": [],
   "author": "",
