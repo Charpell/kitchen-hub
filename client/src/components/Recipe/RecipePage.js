@@ -1,14 +1,18 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { withRouter } from "react-router-dom";
 
 
-class RecipePage extends Component {
-  render() {
-    return(
-      <div>
-        Recipe Page
-      </div>
-    )
-  }
-}
+const RecipePage = ({ match }) => {
+  const { _id } = match.params;
 
-export default RecipePage;
+  return (
+    <div>
+      Recipe Page
+    </div>
+  )
+};
+
+
+export default withRouter(RecipePage);
+
+
