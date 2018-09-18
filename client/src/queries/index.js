@@ -7,6 +7,7 @@ export const GET_ALL_RECIPES = gql`
   query {
     getAllRecipes {
       _id
+      imageUrl
       name
       category
     }
