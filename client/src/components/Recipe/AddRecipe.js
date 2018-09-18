@@ -1,6 +1,8 @@
 import React from 'react'
 import { withRouter } from "react-router-dom";
 import { Mutation } from "react-apollo";
+import CKEditor from "react-ckeditor-component";
+
 import { ADD_RECIPE, GET_ALL_RECIPES } from "../../queries";
 import Error from "../Error";
 import withAuth from "../withAuth";
@@ -57,6 +59,11 @@ class AddRecipe extends React.Component {
         getAllRecipes: [addRecipe, ...getAllRecipes]
       }
     });
+  };
+
+  handleEditorChange = event => {
+    const newContent = event.editor.getData();
+    this.setState({ instructions: newContent });
   };
 
 
@@ -119,12 +126,12 @@ class AddRecipe extends React.Component {
             value={description}
           />
       
-          <textarea 
-            name="instructions" 
-            placeholder="Add instructions" 
-            onChange={this.handleChange} 
-            value={instructions}
-          />
+          <label htmlFor="instructions">Recipe Instructions</label>
+            <CKEditor
+              name="instructions"
+              content={instructions}
+              events={{ change: this.handleEditorChange }}
+            />
       
           <button
                   disabled={loading || this.validateForm()}
