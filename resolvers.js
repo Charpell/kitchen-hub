@@ -64,11 +64,12 @@ exports.resolvers = {
   Mutation: {
     addRecipe: async (
       root,
-      { name, description, category, instructions, username },
+      { name, imageUrl, description, category, instructions, username },
       { Recipe }
     ) => {
       const newRecipe = await new Recipe({
         name,
+        imageUrl,
         description,
         category,
         instructions,
@@ -120,7 +121,7 @@ exports.resolvers = {
       );
       return recipe;
     },
-    
+
     unlikeRecipe: async (root, { _id, username }, { Recipe, User }) => {
       const recipe = await Recipe.findOneAndUpdate(
         { _id },

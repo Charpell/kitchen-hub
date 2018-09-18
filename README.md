@@ -1,4 +1,4 @@
-### Quries
+### Query
 - mutation {
   addRecipe(name: "Grilled Cheese Sandwich", category: "Sandwiches", description: "A tasty sandwich", instructions: "Grill it!") {
     name
