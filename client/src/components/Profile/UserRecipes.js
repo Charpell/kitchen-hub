@@ -9,7 +9,7 @@ import {
   GET_CURRENT_USER,
  
 } from "../../queries";
-
+import Spinner from "../Spinner";
 
 class UserRecipes extends React.Component {
   state = {
@@ -58,7 +58,7 @@ class UserRecipes extends React.Component {
     return (
       <Query query={GET_USER_RECIPES} variables={{ username }}>
         {({ data, loading, error }) => {
-          if (loading) return null;
+          if (loading) return <Spinner />;
           if (error) return <div>Error</div>;
           // console.log(data);
           return (

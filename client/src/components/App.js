@@ -5,6 +5,7 @@ import posed from "react-pose";
 import { Query } from "react-apollo";
 import { GET_ALL_RECIPES } from "../queries";
 import RecipeItem from "./Recipe/RecipeItem";
+import Spinner from "./Spinner";
 
 
 const RecipeList = posed.ul({
@@ -39,7 +40,7 @@ class App extends Component {
 
         <Query query={GET_ALL_RECIPES}>
           {({ data, loading, error }) => {
-            if (loading) return <div>Loading</div>;
+            if (loading) return <Spinner />;
             if (error) return <div>Error</div>;
               console.log(data)
 
