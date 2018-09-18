@@ -30,7 +30,7 @@ exports.resolvers = {
       });
       return user;
     },
-    
+
     searchRecipes: async (root, { searchTerm }, { Recipe }) => {
       if (searchTerm) {
         const searchResults = await Recipe.find(
@@ -51,6 +51,13 @@ exports.resolvers = {
         });
         return recipes;
       }
+    },
+    
+    getUserRecipes: async (root, { username }, { Recipe }) => {
+      const userRecipes = await Recipe.find({ username }).sort({
+        createdDate: "desc"
+      });
+      return userRecipes;
     }
   },
   
@@ -95,6 +102,11 @@ exports.resolvers = {
         throw new Error("Invalid password");
       }
       return { token: createToken(user, 'abc123', "1hr") };
+    },
+    
+    deleteUserRecipe: async (root, { _id }, { Recipe }) => {
+      const recipe = await Recipe.findOneAndRemove({ _id });
+      return recipe;
     }
   }
 }
