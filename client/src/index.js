@@ -23,7 +23,7 @@ import { ApolloProvider } from "react-apollo";
 
 
 const client = new ApolloClient({
-  uri: "http://localhost:4444/graphql",
+  uri: "https://kitchen-hub.herokuapp.com/graphql",
   fetchOptions: {
     credentials: "include"
   },
@@ -37,9 +37,9 @@ const client = new ApolloClient({
   },
   onError: ({ networkError }) => {
     console.log('network error', networkError)
-    // if (networkError) {
-    //   localStorage.setItem("token", "");
-    // }
+    if (networkError) {
+      localStorage.setItem("token", "");
+    }
   }
 });
 
