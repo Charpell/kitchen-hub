@@ -35,11 +35,11 @@ mongoose
   // Initializes application
 const app = express();
 
-const corsOptions = {
-  origin: "http://localhost:3000",
-  credentials: true
-};
-app.use(cors(corsOptions));
+// const corsOptions = {
+//   origin: "http://localhost:3000",
+//   credentials: true
+// };
+app.use(cors('*'));
 
 // Set up JWT authentication middleware
 app.use(async (req, res, next) => {
@@ -58,7 +58,7 @@ app.use(async (req, res, next) => {
 
 
 // Create GraphiQL application
-app.use("/graphiql", graphiqlExpress({ endpointURL: "/graphql" }));
+// app.use("/graphiql", graphiqlExpress({ endpointURL: "/graphql" }));
 
 // Connect schemas with GraphQL
 app.use(
