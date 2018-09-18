@@ -3,11 +3,16 @@
   "version": "1.0.0",
   "description": "A starter for React-Apollo-GraphQL projects",
   "main": "index.js",
+  "engines": {
+    "node": "v9.10.1"
+  },
   "scripts": {
+    "start": "node server.js",
     "server": "nodemon server.js",
     "client": "cd client && npm start",
     "dev":
-      "concurrently --names \"server,client\" \"npm run server --silent\" \"npm run client --silent\""
+      "concurrently --names \"server,client\" \"npm run server --silent\" \"npm run client --silent\"",
+    "heroku-postbuild": "npm install --prefix client && npm run build --prefix client"
   },
   "keywords": [],
   "author": "",
