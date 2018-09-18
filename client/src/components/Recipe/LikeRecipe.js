@@ -6,27 +6,48 @@ import withSession from "../withSession";
 
 class LikeRecipe extends Component {
   state = {
+    liked: false,
     username: ""
   };
 
   componentDidMount() {
     if (this.props.session.getCurrentUser) {
-      const { username } = this.props.session.getCurrentUser;
+      const { username, favorites } = this.props.session.getCurrentUser;
       const { _id } = this.props;
-      console.log(username)
-      this.setState({ username })
+      // console.log(favorites)
+      const prevLiked =
+        favorites.findIndex(favorite => favorite._id === _id) > -1;
+      this.setState({
+        liked: prevLiked,
+        username
+      });
     }
   }
 
+  handleClick = likeRecipe => {
+    this.setState(
+      prevState => ({
+        liked: !prevState.liked
+      }),
+      () => this.handleLike(likeRecipe)
+    );
+  };
+
   handleLike = likeRecipe => {
-    likeRecipe().then(({ data }) => {
-      console.log(data);
-    });
+    if (this.state.liked) {
+      likeRecipe().then(async ({ data }) => {
+        // console.log(data);
+        await this.props.refetch();
+      });
+    } else {
+      // unlike recipe mutation
+      console.log('unlike')
+    }
   };
 
 
   render() {
-    const { username } = this.state;
+    const { liked, username } = this.state;
     const { _id } = this.props;
 
     return (
@@ -37,9 +58,9 @@ class LikeRecipe extends Component {
             {likeRecipe =>
               username && (
                 <button
-                  onClick={() => this.handleLike(likeRecipe)}
+                  onClick={() => this.handleClick(likeRecipe)}
                 >
-                  Like
+                {liked ? "Unlike" : "Like"}
                 </button>
               )
             }
