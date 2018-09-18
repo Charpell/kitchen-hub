@@ -24,7 +24,7 @@ const RecipePage = ({ match }) => {
             <p>Instructions: {data.getRecipe.Instuctions}</p>
             <p>likes: {data.getRecipe.likes}</p>
             <p>Created By: {data.getRecipe.username}</p>
-            <LikeRecipe />
+            <LikeRecipe _id={_id} />
           </div>
         );
       }}

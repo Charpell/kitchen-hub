@@ -1,4 +1,7 @@
 import React, { Component } from 'react'
+import { Mutation } from "react-apollo";
+
+import { LIKE_RECIPE } from "../../queries";
 import withSession from "../withSession";
 
 class LikeRecipe extends Component {
@@ -15,11 +18,33 @@ class LikeRecipe extends Component {
     }
   }
 
+  handleLike = likeRecipe => {
+    likeRecipe().then(({ data }) => {
+      console.log(data);
+    });
+  };
+
+
   render() {
     const { username } = this.state;
+    const { _id } = this.props;
 
-    return username && <button>Like</button>
-
+    return (
+          <Mutation
+            mutation={LIKE_RECIPE}
+            variables={{ _id, username }}
+          >
+            {likeRecipe =>
+              username && (
+                <button
+                  onClick={() => this.handleLike(likeRecipe)}
+                >
+                  Like
+                </button>
+              )
+            }
+          </Mutation>
+    );
   }
 }
 
